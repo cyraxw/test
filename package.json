@@ -1,0 +1,16 @@
+{
+  "name": "codm-attachments-netlify",
+  "version": "2.0.0",
+  "private": true,
+  "description": "CODM attachments hub powered by Netlify Functions and Netlify Blobs",
+  "scripts": {
+    "dev": "netlify dev",
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.4.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^23.6.0"
+  }
+}

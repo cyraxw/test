@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODM Attachments Hub</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="grid-bg"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">C</span>
+      <span>CODM<span class="purple">ATTACH</span></span>
+    </a>
+    <nav>
+      <a href="#attachments">Attachments</a>
+      <a href="#callouts">Callouts</a>
+      <button id="adminBtn" class="ghost-btn">Admin</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">CALL OF DUTY: MOBILE</p>
+        <h1>Build your loadout.<br><span>Know your weapon.</span></h1>
+        <p class="hero-copy">Search CODM attachments, compare weapon options, and explore featured map callouts in one fast interface.</p>
+        <div class="search-wrap">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search weapon, attachment, type..." autocomplete="off">
+          <kbd>CTRL K</kbd>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="pulse"></div>
+        <span class="mini-label">DATABASE</span>
+        <strong id="resultCount">0</strong>
+        <small>attachments indexed</small>
+      </div>
+    </section>
+
+    <section id="attachments" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">LOADOUT DATABASE</p>
+          <h2>Attachments</h2>
+        </div>
+        <select id="typeFilter">
+          <option value="">All types</option>
+          <option>Muzzle</option>
+          <option>Barrel</option>
+          <option>Stock</option>
+          <option>Laser</option>
+          <option>Underbarrel</option>
+          <option>Ammunition</option>
+          <option>Rear Grip</option>
+          <option>Perk</option>
+        </select>
+      </div>
+      <div id="attachmentsGrid" class="cards-grid">
+        <div class="loading">Loading attachments...</div>
+      </div>
+    </section>
+
+    <section id="callouts" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">MAP KNOWLEDGE</p>
+          <h2>Featured Callouts</h2>
+        </div>
+      </div>
+      <div id="calloutsGrid" class="callouts-grid">
+        <div class="loading">Loading callouts...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>CODM Attach Hub · Community database · Use responsibly</footer>
+
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-panel">
+      <button class="close" data-close>×</button>
+      <div id="loginView">
+        <p class="eyebrow">RESTRICTED AREA</p>
+        <h2>Admin Login</h2>
+        <p class="muted">Only admins can add or remove database entries.</p>
+        <form id="loginForm">
+          <input id="adminPassword" type="password" placeholder="Admin password" required>
+          <button class="primary-btn">Sign in</button>
+        </form>
+      </div>
+
+      <div id="dashboardView" class="hidden">
+        <div class="admin-head">
+          <div>
+            <p class="eyebrow">CONTROL PANEL</p>
+            <h2>Admin Dashboard</h2>
+          </div>
+          <button id="logoutBtn" class="ghost-btn">Logout</button>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="tab active" data-tab="attachmentAdmin">Attachments</button>
+          <button class="tab" data-tab="calloutAdmin">Callouts</button>
+        </div>
+
+        <div id="attachmentAdmin" class="admin-tab-content">
+          <form id="attachmentForm" class="admin-form">
+            <input name="weapon" placeholder="Weapon" required>
+            <input name="attachment" placeholder="Attachment" required>
+            <select name="type" required>
+              <option value="">Type</option>
+              <option>Muzzle</option><option>Barrel</option><option>Stock</option>
+              <option>Laser</option><option>Underbarrel</option><option>Ammunition</option>
+              <option>Rear Grip</option><option>Perk</option>
+            </select>
+            <input name="image" placeholder="Image URL (optional)">
+            <textarea name="description" placeholder="Description"></textarea>
+            <label class="check"><input name="featured" type="checkbox"> Featured</label>
+            <button class="primary-btn">Add Attachment</button>
+          </form>
+          <div id="adminAttachments" class="admin-list"></div>
+        </div>
+
+        <div id="calloutAdmin" class="admin-tab-content hidden">
+          <form id="calloutForm" class="admin-form">
+            <input name="title" placeholder="Callout title" required>
+            <input name="image" placeholder="Image URL (optional)">
+            <textarea name="description" placeholder="Description"></textarea>
+            <label class="check"><input name="featured" type="checkbox" checked> Featured</label>
+            <button class="primary-btn">Add Callout</button>
+          </form>
+          <div id="adminCallouts" class="admin-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="/script.js"></script>
+</body>
+</html>
